@@ -2,12 +2,44 @@
 $\vec{p} = \dfrac{1}{Z} A(\vec{p}) V + B(\vec{p}) \Omega$\\
 where \\
 $A(\vec{p}) = \begin{pmatrix}
-  -1 & 0 & p_x \\ 0 & -1 & p_y \\ 0 & 0 & 0
+  -1 & 0 & p_x \\ 0 & -1 & p_y
 \end{pmatrix}$\\
 $B(\vec{p}) = \begin{pmatrix}
-  -p_x p_y & p_x^2 -1 & p_y \\
-  1- p_y^2 & p_x p_y & -p_x \\
-  0 & 0 6
+  -p_x p_y & -(p_x^2 +1) & p_y \\
+  1 + p_y^2 & -p_x p_y & -p_x
 \end{pmatrix}$\\
 $V$: velocity in \alert{inertial frame}\\
-$\Omega$: ang velocity in \alert{intertial frame}
+$\Omega$: ang velocity in \alert{intertial frame}\\
+$\vec{p}$: 2D point in the image
+$\dot{\vec{p}}$: 2D velocity in the image
+
+How to find this?\\
+$\vec{p} = \vec{P}/Z$\\
+$\dot{\vec{p}} = \dot{\vec{P}}/Z - \dot{Z}/Z \vec{p}$\\
+$\dot{Z} = e_3^T \dot{\vec{P}}$\\
+$\dot{\vec{P}} = - \vec{V} - \vec{\Omega} \times \vec{P}$\\
+$=1/Z ( \vec{p} e_3^T - I) \vec{V} + (I - \vec{p} e_3^T)[p]_\times
+\vec{\Omega}$
+
+\textbf{Cases}
+\begin{itemize}
+  \item Known depth:\\
+    $\vec{V}, \vec{\Omega} = argmin_{\vec{V}, \vec{\Omega}}\\
+    \sum |\begin{pmatrix} \dfrac{1}{Z_i} A(\vec{p}_i) &
+    B(\vec{p}_i)\end{pmatrix} 
+    \begin{pmatrix}
+      \vec{V}\\\vec{\Omega}
+    \end{pmatrix} - \dot{\vec{p}}_i|^2$
+  \item No translational vel:\\
+    \alert{Useful when the drone is flying very high, or if we want to
+    track the stars}.\\
+    $\vec{\Sigma}^* = argmin_{\vec{\Sigma}}
+    \sum |B(\vec{p}_i \vec{\Sigma} - \dot{\vec{p}}_i|^2$
+  \item No angular vel:\\
+    \alert{We use the cross product trick to eliminate $Z_i$}
+    $\dot{\vec{p}} = \dfrac{1}{Z_i} A(\vec{p}) \vec{V}$\\
+    $[\dot{\vec{p}}]_{\times} A(\vec{p}) \vec{V} = 0$\\
+    And we can do SVD here.
+  \item Everything unknown. Difficult problem.
+    \end{}
+\end{itemize}
