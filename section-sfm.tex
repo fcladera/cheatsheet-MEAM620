@@ -4,12 +4,18 @@
   \item \textbf{Got:} 2D-2D correspondences between two views $p$, $q$.
   \item \textbf{Want:} $T, R$ between two views.
 \end{itemize}
-$\lambda q = R \mu p + T$\\
+$\mu q = R \lambda p + T$\\
+$T$ is here in the coordinates of $q$.\\
 $DOF = 6$ (3 translation, 3 rotation), but 
 we can only find the translation up to a scale. Finally, $DOF = 5$.
 
 \subsection*{Epipolar constraint}
+From the image, we see that the vectors $\mu q$, $T$ and $\lambda R p$
+are coplanar. We can write the triple product:
+$\mu q^T ( T \times \lambda R p) = 0$\\
 $q^T ( T \times R p) = 0$\\
+$q^T \hat{T} R p = 0$
+
 The planes spanned by $T$, $\lambda q$ and $\mu p$ is called epipolar
 plane (cross product vanishes).
 
@@ -19,6 +25,10 @@ constraint. Therefore, we can obtain the translation up to a scale.
 
 \subsection*{Essential Matrix}
 $q^T E p = 0$, where $E = \hat{T} R$
+
+\subsection*{Fundamental Matrix}
+If our points are not calibrated, we have to calibrate them:\\
+$F = K^{-T} \hat{T} R K'^-1$
 
 \subsection*{Epipolar Line}
 In $p$-plane, line with coefficients $E^T q$.
@@ -39,6 +49,15 @@ $\begin{pmatrix} a_1^T \\ a_2^T \\ \vdots \\ a_n^T \end{pmatrix} E' =
 and we do SVD. Practically: \\
 $E = U \text{diag}\left(\dfrac{\sigma_1 + \sigma_2}{2}, \dfrac{\sigma_1
 + \sigma_2}{2}, 0 \right) V^T$j
+
+Other options for estimation:
+\begin{itemize}
+  \item 5 point algorithm. Quite complex.
+  \item 7 point algorithm. Easier, don't need to do full estimation.
+\end{itemize}
+
+\alert{Always do RANSAC when estimating E, because we can have bad
+points matches}
 
 \subsection*{Essential matrix properties}
 $E = \hat{T} R \Rightarrow E E^T = \hat{T} \hat{T}^T$ 
