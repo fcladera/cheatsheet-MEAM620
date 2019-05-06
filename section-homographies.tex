@@ -2,7 +2,7 @@
 \subsection*{Constant plane in X, Y, Z}
 Eg. for $X = h$:  $H = \begin{pmatrix}
   r_2 & r_3 & h r_1 + t
-\end{pmatrix}$ 
+\end{pmatrix}$
 
 \subsection*{Plane constraint}
 Eg: $A X_w + B Y_w + C Z_w = 1$
@@ -10,3 +10,38 @@ Eg: $A X_w + B Y_w + C Z_w = 1$
   \item Substitute the 1 in the last position. Expand.
   \item Replace $Z_w = 1/C (A X_w + B Y_w)$
 \end{itemize}
+
+\subsection*{Pose estimation}
+$\begin{pmatrix} \hat{R}_1 & \hat{R}_2 & \hat{T}\end{pmatrix}
+=\\
+\underbrace{
+\begin{pmatrix}
+  f & 0 & x_0 \\ 0 & f &y_0\\0 & 0 & 1
+\end{pmatrix}^{-1}
+\begin{pmatrix}
+  h_{11} & h_{12} & h_{13} \\
+  h_{21} & h_{22} & h_{23} \\
+  h_{31} & h_{32} & h_{33}
+\end{pmatrix}
+}_{K^{-1} H}
+$\\
+To solve:\\
+$argmin_{R\in SO(3)}\\
+||R -
+\begin{pmatrix}
+  \hat{R}_1 & \hat{R}_2 & \hat{R}_1 \times \hat{R}_2
+\end{pmatrix}|^2$\\
+Solve with SVD\\
+$\begin{pmatrix}
+  \hat{R}_1 & \hat{R}_2 & \hat{R}_1 \times \hat{R}_2
+\end{pmatrix} = U S V^T$\\
+Finally:\\
+$R = U
+\begin{pmatrix}
+  1 & 0 & 0\\
+  0 & 1 & 0\\
+  0 & 0 & det(U V^T)
+\end{pmatrix} V^T$ \\
+\alert{We do this trick to force tha the determinant of $R$ is 1}\\
+$T = \hat{T}/.5\cdot(|\hat{R}_1|+|\hat{R}_2|)$
+\alert{To get the scale here, we use the average}
