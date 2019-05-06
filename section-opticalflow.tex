@@ -1,0 +1,13 @@
+\section{Optical Flow}
+$\vec{p} = \dfrac{1}{Z} A(\vec{p}) V + B(\vec{p}) \Omega$\\
+where \\
+$A(\vec{p}) = \begin{pmatrix}
+  -1 & 0 & p_x \\ 0 & -1 & p_y \\ 0 & 0 & 0
+\end{pmatrix}$\\
+$B(\vec{p}) = \begin{pmatrix}
+  -p_x p_y & p_x^2 -1 & p_y \\
+  1- p_y^2 & p_x p_y & -p_x \\
+  0 & 0 6
+\end{pmatrix}$\\
+$V$: velocity in \alert{inertial frame}\\
+$\Omega$: ang velocity in \alert{intertial frame}
