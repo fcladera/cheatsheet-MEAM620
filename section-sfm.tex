@@ -13,6 +13,10 @@ $q^T ( T \times R p) = 0$\\
 The planes spanned by $T$, $\lambda q$ and $\mu p$ is called epipolar
 plane (cross product vanishes).
 
+\alert{Whe we cannot recover the scale?}\\
+In the previous equation, scaling $q$ or $p$ will not violate the
+constraint. Therefore, we can obtain the translation up to a scale.
+
 \subsection*{Essential Matrix}
 $q^T E p = 0$, where $E = \hat{T} R$
 
@@ -46,7 +50,7 @@ $=\begin{pmatrix}
 \end{pmatrix} - |T|^2 I$\\
 If we solve $det(E E^T - \lambda I) = 0$, we found two eigenvalues
 $|T|^2$.\\
-To be essential, $E$ should have $\sigma_1 = \sigma_2 > 0$ and $sigma_3
+To be essential, $E$ should have $\sigma_1 = \sigma_2 > 0$ and $\sigma_3
 = 0$
 
 \subsection*{Essential matrix decomposition}
@@ -68,13 +72,20 @@ Two $R$:
   \item $R_1 = U R^T_{z, \pi/2} V^T$
   \item $R_2 = U R^T_{z, -\pi/2} V^T$
 \end{itemize}
-Two $T$:
+Two $\hat{T}$:
 \begin{itemize}
-  \item $R_1 = U R^T_{z, \pi/2} \Sigma U^T$
-  \item $R_2 = U R^T_{z, -\pi/2} \Sigma U^T$
+  \item $T_1 = U R^T_{z, \pi/2} \Sigma U^T$
+  \item $T_2 = U R^T_{z, -\pi/2} \Sigma U^T$
 \end{itemize}
 
-Disembiguate with $\lambda q = \mu R p + T$ such that $\lambda, \mu > 0$
+Where\\
+$T_{z, \pi/2} = \begin{pmatrix} 
+  0 & 1 & 0 \\ -1 & 0 & 0\\ 0 & 0 & 0
+\end{pmatrix}$
+
+Finally, disembiguate with $\lambda q = \mu R p + T$ such that $\lambda,
+\mu > 0$
+
 
 \subsection*{Triangulation}
 \begin{itemize}
@@ -94,5 +105,5 @@ $\underbrace{\begin{pmatrix}q_i & -R p_i\end{pmatrix}}_{3\times2}
     $q^T ( T \times p) = 0$ or $(q \times p)^T T = 0$.\\
     We need 2 points to solve the problem (up to a scale).
   \item Pure translation essential matrix: we can recognize if it is
-    skew symmetric.
+    skew symmetric. If $E$ is antisymmetric, that means that $R = I$!
 \end{itemize}
