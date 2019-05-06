@@ -1,4 +1,25 @@
 \section{Homographies}
+\subsection*{Properties}
+\begin{itemize}
+  \item $H$ has 8 DOF, it can be determined up to a scale.
+  \item $H$ has to be invertible, $det(H) \neq 0$.
+  \item It maps lines to lines:\\
+    $l^T p = 0, p' \sim H p \Rightarrow l^T H^{-1} p' \Rightarrow l'
+    \rightarrow H^{-T} l$
+  \item Preserves incidence (three collinear points remain collinear):\\
+    $p^T(q\times r) = 0 \Rightarrow (H p)^T (H q \times H r) \Rightarrow
+    det(H) p^T (q \times r) = 0$\\
+    Property $(M a) \times (M b) = det(M) M^{-T} (a \times b)$
+\end{itemize}
+
+\subsection{Computing homographies}
+\begin{itemize}
+  \item Four point SVD
+  \item 2 Points infinity, origin, $(1\,1\,1)$. Projections $A, B, C, D$.\\
+    $H \sim (\alpha A \, \beta B \, \gamma C)$\\
+    $(\alpha \, \beta \, \gamma)^T = (A \, B \, C)^{-1} D$
+\end{itemize}
+
 \subsection*{Constant plane in X, Y, Z}
 Eg. for $X = h$:  $H = \begin{pmatrix}
   r_2 & r_3 & h r_1 + t

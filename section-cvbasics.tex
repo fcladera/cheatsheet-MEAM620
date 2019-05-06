@@ -31,6 +31,32 @@ system in camera coordinates}
 
 \subsection*{Projective Geometry}
 \begin{itemize}
-  \item 
+  \item Points at the infinity (do not intesect the 2D plane): $\begin{pmatrix} x & y & 0
+    \end{pmatrix}^T$
+    \item Points in the image (intersect the 2D plane): $\begin{pmatrix} x & y & 1
+    \end{pmatrix}^T$
+\end{itemize}
+
+\textbf{Lines}
+Lines $\rightarrow$ represented by normal vectors. \\
+$l^ p = 0$
+
+To find the line that goes trough two points:\\
+$l \sim p \times q$
+
+To find the intersection of two lines:\\
+$p \sim l \times l'$
+
+To find if three points are collinear:
+$p^T (q \times r) = 0$
+
+To find if three lines are concurrent:
+$l^T (l' \times l'') = 0$
+
+\begin{itemize}
+  \item Lines \textbf{in the image} are represented by \textbf{points in
+    the infinity}
+  \item Points \textbf{in the image} represent \textbf{lines in the
+    infinity}.
 \end{itemize}
 
