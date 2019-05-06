@@ -1,6 +1,38 @@
-\section*{Procrustes (3D-3D registration)}
+\section{Procrustes (3D-3D registration)}
 \begin{itemize}
   \item \textbf{Got:} two set of 3D points
   \item \textbf{Want:} $R, T$ such that\\
     $\min_{R,T} \sum |A_i - R B_i +T|^2$
 \end{itemize}
+
+\subsection*{Procrustes solution:}
+\begin{enumerate}
+  \item $\bar{P} = \dfrac{1}{N} \sum P_i$,
+    $bar{P'} = \dfrac{1}{N} \sum P_i'$\\
+  \item $Z = \sum(P_i - \bar{P})(P_i' - \bar{P'})^T = U S V^T$
+  \item Rectify $R$ using the same trick we use in pose estimation.
+  \item $T = \bar{P'} - R \bar{P}$
+\end{enumerate}
+
+% Solving Procrustes (by expanding the previous equation):\\
+% $= 2 \left( \sum R P_i - P_i' \right)^T T + N T^T T -\\
+% 2 \sum(P_i'^T R P_i) + \sum P_i^T P_i + \sum P_i'^T P_i'$
+% 
+% Derivate w.r.t. $T$ to find $T$\\
+% $\Rightarrow T = \dfrac{1}{N} \sum P_i' - R P_i\\
+% = \bar{P'} - R \bar{P}$\\
+% The translation is the difference between the centroids.
+% 
+% Substract the centroids to the points to get rid of the translation
+% points:\\
+% $\tilde{P_i} = P_i - \bar{P}$ , $\tilde{P_i'} = P_i' - \bar{P'}$\\
+% $argmin_{R \in SO(3)} \sum |R \tilde{P_i} - \tilde{P_i'}|$
+% 
+% Which yields:
+% 
+% $argmax_{R \in SO(3)} \sum \tilde{P_i'}^T R \tilde{P_i} = tr(RZ)$\\
+% $ = tr (R U S V^T) = tr((V^T R U) S) = tr(QS)$
+% 
+% We make $Q$ identity to maximize, and we have.
+
+
