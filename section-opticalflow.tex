@@ -42,3 +42,15 @@ $=1/Z ( \vec{p} e_3^T - I) \vec{V} + (I - \vec{p} e_3^T)[p]_\times
     And we can do SVD here.
   \item Everything unknown. Difficult problem.
 \end{itemize}
+
+\subsection{Optical flow as a local search}
+Assumptions:
+\begin{itemize}
+  \item Brightness consistency
+  \item Minimal geometric deformations
+  \item Minimal patch displacement
+  \item Patch is sufficiently interesting
+  \item Wall is not ''white''.
+\end{itemize}
+
+\textbf{Finding features}(SURF) -> \textbf{Track them} (KLT)

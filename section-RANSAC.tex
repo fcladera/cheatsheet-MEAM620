@@ -1,0 +1,20 @@
+\section{RANSAC}
+\subsection*{Hough transform}
+Parametrize points $\rightarrow$ voting system.
+
+Issues:
+\begin{itemize}
+  \item Memory grows exponentially in parameter space.
+  \item Need bounds in parameter space
+\end{itemize}
+
+\subsection*{Sample consensus}
+Do it for all the points, count the one that has the most inliers.
+Problem: a lot of combinations.
+
+\subsection*{RANSAC inliers}
+$k = \dfrac{\log(1 - p_{success}}{\log(1 - \epsilon^M)}$\\
+where $k$: iterations, $p_{success}$: target success probability,
+$\epsilon$: inlier proportion in set, $M$: minimum number of points for
+model.
+
