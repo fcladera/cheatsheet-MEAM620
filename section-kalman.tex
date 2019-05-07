@@ -19,42 +19,40 @@
 \end{itemize}
 
 \subsection*{Equations}
-\textbf{Prediction}: uses input $u_t$ and $Q_t$, gets $\bar{\mu}_t$,
+\textbf{Prediction}: uses input $u_t$ and $Q_t$:\\
 $\bar{\Sigma}_t$\\
 $\bar{\mu_t} = A \mu_{t-1} + B u_t$ \\
 $\bar{\Sigma_t} = A \Sigma_{t-1} A^T + Q$
 
-Where does this come?
+\textbf{Where does this come?}
 \begin{itemize}
   \item Sum of gausians: $z = x + y$ is also a gaussian with $\mu_z =
     \mu_x + \mu_y$, $\Sigma_z = \Sigma_x + \Sigma_y$.
-  \item Affine transformations: $X \sim N(\mu_X, \Sigma_X)$, $Y= AX +
-    b$, then $Y \sim N(\mu_Y, \Sigma_Y)$, $\mu_Y = A \mu_X + b$,
+  \item Affine transformations: \\$X \sim N(\mu_X, \Sigma_X)$, $Y= AX +
+    b$, then $Y \sim N(\mu_Y, \Sigma_Y)$, $\mu_Y = A \mu_X + b$,\\
     $\Sigma_Y = A \Sigma_X A^T$.
 \end{itemize}
 
-
-\textbf{Update}: uses measurement $z_t$ and $R_t$, gets new $\mu_t$ and
-$\Sigma_t$\\
+\textbf{Update}: uses measurement $z_t$ and $R_t$:\\
 $K_t = \bar{\Sigma}_t C^T (C \bar{\Sigma}_t C^T + R)^{-1}$ \\
 $\mu_t = \bar{\mu}_t + K_t (\underbrace{z_t - C
-\bar{\mu}_t}_{\text{innovation}})$ \\
+\bar{\mu}_t}_{\text{Innovation}})$ \\
 $\Sigma_t = \bar{\Sigma}_t - K_t C \bar{\Sigma}_t$
 
-Where does this come?
+\textbf{Where does this come?}
 \begin{itemize}
   \item 
   $Y = [X \, Z]^T$ multivariate Gaussian, $\mu = [\mu_X \, \mu_Z]^T$,\\
   $\Sigma = [\Sigma_{XX} \, \Sigma_{XZ}; \Sigma_{ZX} \, \Sigma_{ZZ}]$\\
   $p(X|Z) = P(X, Z)/P(Z)$ has \\
   $\mu_{X|Z} = \mu_X + \Sigma_{XZ} \Sigma_{ZZ}^{-1}(X - \mu_Z)$\\
-  $\Sigma_{X|Z} = \Sigma_{XX} - \Sigma_{XZ} \Sigma_{ZZ}^-1 \Sigma_{ZX}$
+  $\Sigma_{X|Z} = \Sigma_{XX} - \Sigma_{XZ} \Sigma_{ZZ}^{-1} \Sigma_{ZX}$
 \item The best update without a measurement is $x_t = \bar{x}_t$. Then\\
   $\begin{pmatrix}x_t \\ z_t\end{pmatrix} = 
   \begin{pmatrix}I & 0\\ C & I\end{pmatrix}
   \begin{pmatrix}\bar{x}_t \\ v_t\end{pmatrix}$ \\
-  With mean  $[\bar{\mu}_t \, C\bar{\mu}_t]^T$ and
-  $
+  With mean  $[\bar{\mu}_t \, C\bar{\mu}_t]^T$ and\\
+  $ \Sigma = 
   \begin{pmatrix}
     I & 0 \\ C & I
   \end{pmatrix}
@@ -76,20 +74,19 @@ Where does this come?
 Degree to which the measurement is incorporated ("trusted")
 \begin{itemize}
   \item Perfect sensor: $R = 0$\\
-    $K_t = C^{-1}$\\
-    $\mu_t = C^{-1} z_t$\\
-    $\Sigma_t = 0$
+    $K_t = C^{-1}$, $\mu_t = C^{-1} z_t$, $\Sigma_t = 0$
   \item Horrible sensor: $R \to \infty$\\
-    $K_t \to 0$
-    $\mu_t \to \bar{\mu}_t$\\
-    $\Sigma_t \to \bar{\Sigma}_t$
+    $K_t \to 0$ $\mu_t \to \bar{\mu}_t$, $\Sigma_t \to \bar{\Sigma}_t$
 \end{itemize}
 
-\subsection*{Kalman facts}
+\subsection*{Kalman Facts}
 \begin{itemize}
-  \item If distrib. not gaussian, Kalman filter is the minimum variance
+  \item If dist. not gaussian, Kalman filter is the minimum variance
     linear estimator (noise must be uncorrelated with initial state
-    $x_0$.
+    $x_0$).
   \item \alert{Variance never increases due to receiving a measurement}.
-  \item Variance update independent of the measurement realization.
+  \item \alert{Variance update independent of the measurement
+    realization}.
+  \item The Kalman filter permits individual update steps for each
+    sensor as data becomes available.
 \end{itemize}

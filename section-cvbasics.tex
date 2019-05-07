@@ -7,23 +7,17 @@ Problem: d changes depending where the object is in the scene. Hence:
 $y \approx f Y/Z$\\
 \alert{Only valid if $Z >> d$}
 
-\subsection*{Calibration}
-\begin{itemize}
-  \item Find $f$.
-  \item Radial distortion:\\
-    $r = norm(x, y), x' = x( 1 + k_1 t + k_2 r^2
-    + k_3 r^3$\\
-    (and similar for y)
-\end{itemize}
+\subsection*{Calibration Procedure}
+Finds $f$ and Radial distortion:\\
+$r = norm(x, y), x' = x( 1 + k_1 t + k_2 r^2
++ k_3 r^3$ (and similar for y)
 
 \subsection*{Projection Equation}
 $\begin{pmatrix} u\\ v\\ w\end{pmatrix} \sim
-S \begin{pmatrix}r_1 & r_2 & r_3 & t \end{pmatrix}
+S \underbrace{\begin{pmatrix}r_1 & r_2 & r_3 & t \end{pmatrix}}_{^C R_W
+| ^C T_W}
 \begin{pmatrix} X_w \\ Y_w \\ Z_w \\ 1\end{pmatrix}$ \\
-$\begin{pmatrix} u\\ v\\ w\end{pmatrix} \sim
-S \begin{pmatrix} ^C R_W & ^C T_W \end{pmatrix}
-\begin{pmatrix} X_w \\ Y_w \\ Z_w \\ 1\end{pmatrix}$ \\
-where $S = [f 0 x_0; 0 f y_0; 0 0 1]$\\
+where $S = [f\,0\,x_0;\,0\,f\,y_0;\,0\,0\,1]$
 \includegraphics[width=\linewidth]{Images/projection.png}
 
 \alert{$t$ is the distance from the camera to the world coordinate
@@ -38,20 +32,20 @@ system in camera coordinates}
 \end{itemize}
 
 \textbf{Lines}
-Lines $\rightarrow$ represented by normal vectors. \\
-$l^ p = 0$
+$\rightarrow$ represented by normal vectors 
+$l^T p = 0$
 
-To find the line that goes trough two points:\\
+\begin{itemize}
+ \item Line that goes trough two points:
 $l \sim p \times q$
-
-To find the intersection of two lines:\\
+\item intersection of two lines:
 $p \sim l \times l'$
-
-To find if three points are collinear:
+\item
+if three points are collinear:
 $p^T (q \times r) = 0$
-
-To find if three lines are concurrent:
+\item if three lines are concurrent:
 $l^T (l' \times l'') = 0$
+\end{itemize}
 
 \begin{itemize}
   \item Lines \textbf{in the image} are represented by \textbf{points in
@@ -59,4 +53,3 @@ $l^T (l' \times l'') = 0$
   \item Points \textbf{in the image} represent \textbf{lines in the
     infinity}.
 \end{itemize}
-

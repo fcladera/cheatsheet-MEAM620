@@ -10,7 +10,7 @@ $B(\vec{p}) = \begin{pmatrix}
 \end{pmatrix}$\\
 $V$: velocity in \alert{inertial frame}\\
 $\Omega$: ang velocity in \alert{intertial frame}\\
-$\vec{p}$: 2D point in the image
+$\vec{p}$: 2D point in the image \\
 $\dot{\vec{p}}$: 2D velocity in the image
 
 How to find this?\\
@@ -43,7 +43,7 @@ $=1/Z ( \vec{p} e_3^T - I) \vec{V} + (I - \vec{p} e_3^T)[p]_\times
   \item Everything unknown. Difficult problem.
 \end{itemize}
 
-\subsection{Optical flow as a local search}
+\subsection*{Optical flow as a local search}
 Assumptions:
 \begin{itemize}
   \item Brightness consistency
@@ -52,5 +52,6 @@ Assumptions:
   \item Patch is sufficiently interesting
   \item Wall is not ''white''.
 \end{itemize}
+Barberpole issue: we cannot see if it moves in a specific direction.
 
 \textbf{Finding features}(SURF) -> \textbf{Track them} (KLT)

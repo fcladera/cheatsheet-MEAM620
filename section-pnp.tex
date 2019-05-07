@@ -7,11 +7,12 @@
 
 \textbf{Solutions}
 \begin{itemize}
-  \item Linear hack\\
+  \item Linear hack (hw 3)\\
     $\lambda_i \begin{pmatrix} x_i \\ y_i \\ 1 \end{pmatrix} = R
     \begin{pmatrix}X_i \\ Y_i \\ Z_i \end{pmatrix} + T$\\
-    Expand the matrices \\
-    Solve for $\lambda_i$, and get two equations per point.
+    Expand the matrices.
+    Solve for $\lambda_i$, and get two equations per point. \alert{We
+    need at least 6 points}.
   \item Non-linear optimization
   \item P3P
 \end{itemize}
@@ -34,8 +35,8 @@ d_{13}^2 (1 + u^2 - 2u \cos(\delta_{12}))$
   \item Insert $u$ back into 1. Quartic polynomial in $v$.
     \alert{At most 4 solutions}.
 \end{enumerate}
+
 \alert{To find the angles, we can use the dot product of the rays.}
 Each pixel on the camera image denotes a direction. Using camera K matrix, you can find the vector in the camera frame. Using inner products give the angle cosines.
 
-After solving P3P, we have to use procrustes to find $R$ and $T$
-$\Rightarrow$ match 3D points to 3D points.
+After solving P3P, we have to use procrustes to find $R$ and $T$.

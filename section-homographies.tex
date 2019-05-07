@@ -9,12 +9,15 @@
   \item Preserves incidence (three collinear points remain collinear):\\
     $p^T(q\times r) = 0 \Rightarrow (H p)^T (H q \times H r) \Rightarrow
     det(H) p^T (q \times r) = 0$\\
-    Property $(M a) \times (M b) = det(M) M^{-T} (a \times b)$
+    Property \\
+    $(M a) \times (M b) = det(M) M^{-T} (a \times b)$
 \end{itemize}
 
-\subsection{Computing homographies}
+\subsection*{Computing homographies}
 \begin{itemize}
-  \item Four point SVD
+  \item Four point: Each point gives 2 equations.
+    $A h = 0 \Rightarrow U S V^T = A$\\
+    $h = V(9)$
   \item 2 Points infinity, origin, $(1\,1\,1)$. Projections $A, B, C, D$.\\
     $H \sim (\alpha A \, \beta B \, \gamma C)$\\
     $(\alpha \, \beta \, \gamma)^T = (A \, B \, C)^{-1} D$
@@ -64,5 +67,5 @@ $R = U
   0 & 0 & det(U V^T)
 \end{pmatrix} V^T$ \\
 \alert{We do this trick to force tha the determinant of $R$ is 1}\\
+\alert{To get the scale here, we use the average}\\
 $T = \hat{T}/.5\cdot(|\hat{R}_1|+|\hat{R}_2|)$
-\alert{To get the scale here, we use the average}

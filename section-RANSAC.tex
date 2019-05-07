@@ -1,20 +1,19 @@
 \section{RANSAC}
 \subsection*{Hough transform}
-Parametrize points $\rightarrow$ voting system.
+Parametrize objects that you are trying to fit. For each point, iterate
+through all the objects that fit with this point. Plot in
+parameter space$\rightarrow$ voting.
+\includegraphics[width=\linewidth]{Images/hough.png}
 
-Issues:
-\begin{itemize}
-  \item Memory grows exponentially in parameter space.
-  \item Need bounds in parameter space
-\end{itemize}
+\alert{Issues:} Memory grows exponentially in parameter space. Need bounds.
 
 \subsection*{Sample consensus}
-Do it for all the points, count the one that has the most inliers.
-Problem: a lot of combinations.
+RANSAC with all the points, count the one that has the most inliers.
+\alert{Problem}: a lot of combinations.
 
 \subsection*{RANSAC inliers}
-$k = \dfrac{\log(1 - p_{success}}{\log(1 - \epsilon^M)}$\\
-where $k$: iterations, $p_{success}$: target success probability,
-$\epsilon$: inlier proportion in set, $M$: minimum number of points for
+$k = \dfrac{\log(1 - p_{success})}{\log(1 - \epsilon^M)}$\\
+$k$: iterations, $p_{success}$: target success probability,
+$\epsilon$: inlier proportion in set, $M$: min. number of points for
 model.
 
