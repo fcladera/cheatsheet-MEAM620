@@ -12,10 +12,11 @@ interval $\tau = [t', t)$.
 \textbf{Linearize dynamics around\\$x = \mu_{t-1}$, $u = u_t$, $n = 0$}\\
 $f(x_t, u, n) \approx f(\mu_{t-1}, u_t, 0) +\\
 \underbrace{\dfrac{\partial f}{\partial x}\Bigr|_{\substack{\mu_{t-1},
-u_t}}}_{A_t}(x - \mu_{t-1}) + \underbrace{\dfrac{\partial f}{\partial u}\Bigr|_{\substack{\mu_{t-1},
-u_t}}}_{B_t}(u - u_t) +\\
+u_t, 0}}}_{A_t}(x - \mu_{t-1}) + \underbrace{\dfrac{\partial f}{\partial
+u}\Bigr|_{\substack{\mu_{t-1},
+u_t, 0}}}_{B_t}\\(u - u_t) +
 \underbrace{\dfrac{\partial f}{\partial n}\Bigr|_{\substack{\mu_{t-1},
-u_t}}}_{U_t}(n - 0)
+u_t, 0}}}_{U_t}(n - 0)
 $\\
 
 \textbf{One-step Euler integration}\\
@@ -24,7 +25,7 @@ $x_t \approx x_{t-1} + (  f(\mu_{t-1}, u_t, 0) + \\
 A_t (x_{t-1} - \mu_{t-1})  +  U_t n) \delta t$\\
 $x_t \approx \underbrace{(I + A_t \delta t)}_{F_t} x_{t-1}
 + \underbrace{(U_t \delta_t)}_{V_t} n_t + \\
-\underbrace{\left( f(\mu_{t-1}, u_t, 0) - ª_t \mu_{t-1}\right) \delta t}_{b_t}$
+\underbrace{\left( f(\mu_{t-1}, u_t, 0) - A_t \mu_{t-1}\right) \delta t}_{b_t}$
 \begin{itemize}
   \item $\bar{\mu}_t = F_t \mu_{t-1} + b_t \\
     = \mu_{t-1} + \delta t f(\mu_{t-1}, u_t, 0)$
@@ -92,9 +93,9 @@ $\vec{\omega} = \begin{pmatrix} p & q & r\end{pmatrix}^T = \\
 $
 
 \textbf{First Implementation}: gyro + VICON (linear vel)\\
-$\vec{x} = \begin{pmatrix}\vec{p}   & \vec{q} & \vec{b}_g\end{pmatrix}^T$\\
+$\vec{x} = \begin{pmatrix}\vec{p}   & \vec{q} &
+\vec{b}_g\end{pmatrix}^T$ ($\vec{b}_g$ bias gyro)\\
 $\vec{u} = \begin{pmatrix}\vec{v}_m & \vec{\omega}_m\end{pmatrix}^T$\\
-with ($\vec{b}_g$ bias gyro)\\
 $\vec{v}_m = \dot{\vec{p}}_m + \vec{n}_v$\\
 $\vec{\omega}_m = \vec{\omega} + \vec{b}_g + \vec{n}_g$\\
 $\dot{\vec{b}}_g = \vec{n}_{bg} \sim N(0, Q_g)$ (bias gyro drift)\\
@@ -107,6 +108,9 @@ $\dot{\vec{x}} = f(\vec{x}, \vec{u}, \vec{n}) = \\
  \end{pmatrix}
 $\\
 
+$\vec{n} =
+\begin{pmatrix} \vec{n}_v & \vec{n}_g & \vec{n}_{bg}\end{pmatrix}$
+
 $\vec{z} = \begin{pmatrix} I & 0 & 0\\0 & I & 0\end{pmatrix} \vec{x} +
 \vec{v}$
 
@@ -114,7 +118,7 @@ $\vec{z} = \begin{pmatrix} I & 0 & 0\\0 & I & 0\end{pmatrix} \vec{x} +
 $\vec{x} = \begin{pmatrix}\vec{p}   & \vec{q} & \vec{v} &
 \vec{b}_g & \vec{b}_a \end{pmatrix}^T$\\
 $\vec{u} = \begin{pmatrix}\vec{a}_m & \vec{\omega}_m\end{pmatrix}^T$\\
-with ($\vec{b}_g$ bias gyro, $\vec{b}_a$ bias accel)\\
+($\vec{b}_g$ bias gyro, $\vec{b}_a$ bias accel)\\
 $\vec{\omega}_m = \vec{\omega} + \vec{b}_g + \vec{n}_g$\\
 $\dot{\vec{b}}_g = \vec{n}_{bg} \sim N(0, Q_g)$ (bias gyro drift)\\
 $\vec{a}_m = R(\vec{q})^T (\ddot{\vec{p}} - \vec{g}) + \vec{b}_a +
@@ -129,6 +133,9 @@ $\dot{\vec{x}} = f(\vec{x}, \vec{u}, \vec{n}) = \\
    \vec{n}_{bg} \\
    \vec{n}_{ba}
  \end{pmatrix}$
+
+$\vec{n} =
+\begin{pmatrix} \vec{a}_v & \vec{n}_g & \vec{n}_{bg} & \vec{n}_{ba}\end{pmatrix}$
 
 $\vec{z} = \begin{pmatrix}
 I & 0 & 0 & 0 & 0\\

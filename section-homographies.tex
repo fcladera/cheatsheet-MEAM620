@@ -11,6 +11,9 @@
     det(H) p^T (q \times r) = 0$\\
     Property \\
     $(M a) \times (M b) = det(M) M^{-T} (a \times b)$
+  \item The determinant of a Rot. + Transl. is $det(r_1\,r_2\,T) =
+    T^T(r_1\times r_2)$, which vanishes if the camera is in the $Z$
+    plane.
 \end{itemize}
 
 \subsection*{Computing homographies}
@@ -32,7 +35,7 @@ Eg. for $X = h$:  $H = \begin{pmatrix}
 Eg: $A X_w + B Y_w + C Z_w = 1$
 \begin{itemize}
   \item Substitute the 1 in the last position. Expand.
-  \item Replace $Z_w = 1/C (A X_w + B Y_w)$
+  \item Replace $Z_w = 1/C (1 - A X_w - B Y_w)$
 \end{itemize}
 
 \subsection*{Pose estimation}
