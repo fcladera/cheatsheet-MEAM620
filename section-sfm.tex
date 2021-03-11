@@ -15,12 +15,12 @@ are coplanar. We can write the triple product:\\
 $\mu q^T ( T \times \lambda R p) = 0$\\
 $q^T ( T \times R p) = 0$\\
 $q^T \hat{T} R p = 0$\\
-$q^T E p = 0$, where $E = \hat{T} R$ essential matix.
+$q^T E p = 0$, where $E = \hat{T} R$ essential matrix.
 
 The planes spanned by $T$, $\lambda q$ and $\mu p$ is called epipolar
 plane (cross product vanishes).
 
-\alert{Whe we cannot recover the scale?}\\
+\alert{Why we cannot recover the scale?}\\
 Scaling $q$ or $p$ will not violate the
 constraint. Therefore, we can obtain the translation up to a scale.
 \subsection*{Fundamental Matrix}
@@ -49,7 +49,7 @@ $E = U \text{diag}\left(\dfrac{\sigma_1 + \sigma_2}{2}, \dfrac{\sigma_1
 
 \textbf{Other options for estimation}
 \begin{itemize}
-  \item 5 point algorithm. Quite complex. Minimum numer.
+  \item 5 point algorithm. Quite complex. Minimum number.
   \item 7 point algorithm. Easier, don't need to do full estimation.
 \end{itemize}
 
@@ -100,7 +100,7 @@ Two $\hat{T}$:
 \end{itemize}
 
 
-Finally, disembiguate with $\lambda q = \mu R p + T$ such that $\lambda,
+Finally, disambiguate with $\lambda q = \mu R p + T$ such that $\lambda,
 \mu > 0$
 
 \subsection*{Triangulation}
@@ -113,7 +113,7 @@ We set the translation to $|T| = 1$
 $\underbrace{\begin{pmatrix}q_i & -R p_i\end{pmatrix}}_{3\times2}
 \underbrace{\begin{pmatrix} \mu_i \\\lambda_i \end{pmatrix}}_{2\times1} =
 \underbrace{T}_{3 \times 1}$\\
-3 eqs with 2 unknowns, solve with pseudoinverse
+3 eqs with 2 unknowns, solve with pseudo inverse
 
 \subsection*{Tips and Tricks}
 \begin{itemize}

@@ -25,7 +25,7 @@ $\bar{\Sigma_t} = A \Sigma_{t-1} A^T + Q$
 
 \textbf{Where does this come?}
 \begin{itemize}
-  \item Sum of gausians: $z = x + y$ is also a gaussian with $\mu_z =
+  \item Sum of Gaussians: $z = x + y$ is also a Gaussian with $\mu_z =
     \mu_x + \mu_y$, $\Sigma_z = \Sigma_x + \Sigma_y$.
   \item Affine transformations: \\$X \sim N(\mu_X, \Sigma_X)$, $Y= AX +
     b$, then $Y \sim N(\mu_Y, \Sigma_Y)$, $\mu_Y = A \mu_X + b$,\\
@@ -80,7 +80,7 @@ Degree to which the measurement is incorporated ("trusted")
 
 \subsection*{Kalman Facts}
 \begin{itemize}
-  \item If dist. not gaussian, Kalman filter is the minimum variance
+  \item If dist. not Gaussian, Kalman filter is the minimum variance
     linear estimator (noise must be uncorrelated with initial state
     $x_0$).
   \item \alert{Variance never increases due to receiving a measurement}.
