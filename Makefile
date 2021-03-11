@@ -12,7 +12,14 @@ SRC = $(NAME).tex
 all 	: cheatsheet
 
 cheatsheet 	:
+	$(LATEX) $(SRC) > /dev/null
+	# run again to get the references right
 	$(LATEX) $(SRC)
 
 clean	:
-	@-rm -f $(NAME).pdf
+	rm -f $(NAME).pdf
+	rm -f $(NAME).aux
+	rm -f $(NAME).fls
+	rm -f $(NAME).log
+	rm -f $(NAME).synctex.gz
+	rm -f $(NAME).xdv
