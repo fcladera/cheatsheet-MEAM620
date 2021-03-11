@@ -1,18 +1,18 @@
 # Commands
 NAME = cheatsheet
-LATEX = latexmk -xelatex -interaction=nonstopmode -bibtex -pvc -jobname=$(NAME)
+LATEX = xelatex -file-line-error -synctex=1 -interaction=nonstopmode -shell-escape -recorder
 DIR_OUTPUT = /tmp/Volatile
 
 ## Sources
 SRC = $(NAME).tex
 
 .PHONY	: all clean \
-          essay
+          cheatsheet
 
-all 	: essay
+all 	: cheatsheet
 
-essay 	:
-	$(LATEX) $(SRC) > /dev/null
+cheatsheet 	:
+	$(LATEX) $(SRC)
 
 clean	:
-	@-rm -f $(DIR_OUTPUT)/*
+	@-rm -f $(NAME).pdf
